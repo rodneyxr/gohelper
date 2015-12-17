@@ -1,9 +1,16 @@
 package stringutils
 
 import (
+	"regexp"
 	"unicode"
 	"unicode/utf8"
 )
+
+// Matches checks whether a textual regular expression matches a string. More complicated queries need to use regex.Compile
+// and the full Regexp interface.
+func Matches(pattern string, s string) (matched bool, err error) {
+	return regexp.MatchString(pattern, s)
+}
 
 // Reverse reverses a string but does not preserve combining characters. This function interprets its argument as UTF-8
 // and ignores bytes that do not form valid UTF-8. The return value is UTF-8.
